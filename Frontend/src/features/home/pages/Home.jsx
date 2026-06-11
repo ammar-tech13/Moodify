@@ -172,8 +172,11 @@ const Home = ({ activeTab = "Home" }) => {
 
                 recommendedSongText = recommendedSongObj.title;
 
-                if (autoPlayEnabled) {
-                    setSong(recommendedSongObj);
+               if (autoPlayEnabled) {
+    setSong(recommendedSongObj);
+
+
+await fetchPlaylist(normalized);
                 }
             } else {
                 recommendedSongText = `No ${normalized} song found`;
@@ -195,7 +198,7 @@ const Home = ({ activeTab = "Home" }) => {
         },
         ...prev
     ].slice(0, 50));
-}, [setSong, minConfidence, autoPlayEnabled]);
+}, [setSong, minConfidence, autoPlayEnabled,fetchPlaylist]);
 
  
     const filteredSongs = librarySongs.filter(track => {
