@@ -121,7 +121,7 @@ const Player = () => {
     useEffect(() => {
         console.log("Player.jsx useEffect ran, song.url:", song?.url, "isInitialMount:", isInitialMount.current);
         if (audioRef.current && song?.url) {
-            if (song.url.startsWith("http://localhost:3000")) {
+            if (song.url.startsWith("https://moodify-backend-3eni.onrender.com")) {
                 audioRef.current.setAttribute("crossorigin", "anonymous");
             } else {
                 audioRef.current.removeAttribute("crossorigin");

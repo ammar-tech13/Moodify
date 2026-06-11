@@ -69,7 +69,7 @@ const Home = ({ activeTab = "Home" }) => {
     const fetchPlaylist = useCallback(async (mood) => {
         try {
             const res = await fetch(
-                `http://localhost:3000/api/songs/list?mood=${mood}`
+                `https://moodify-backend-3eni.onrender.com/api/songs/list?mood=${mood}`
             );
 
             if (!res.ok) throw new Error("Failed to fetch playlist");
@@ -97,7 +97,7 @@ const Home = ({ activeTab = "Home" }) => {
     useEffect(() => {
         const fetchAllSongs = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/songs/list");
+                const res = await fetch("https://moodify-backend-3eni.onrender.com/api/songs/list");
 
                 if (res.ok) {
                     const data = await res.json();
@@ -154,7 +154,7 @@ const Home = ({ activeTab = "Home" }) => {
     if (confidence >= minConfidence) {
         try {
             const res = await fetch(
-                `http://localhost:3000/api/songs?mood=${normalized}`
+                `https://moodify-backend-3eni.onrender.com/api/songs?mood=${normalized}`
             );
 
             const data = await res.json();
