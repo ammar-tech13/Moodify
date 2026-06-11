@@ -767,7 +767,7 @@ const Home = ({ activeTab = "Home" }) => {
                 {/* Header */}
                 <header className="header">
                     <div className="header__brand-meta">
-                        <h1>Welcome back, {user?.fullName || user?.username || 'Mahesh'} 👋</h1>
+                        <h1>Welcome back, {user?.fullName || user?.username || 'Ammar'} 👋</h1>
                         <p>Moodify AI Emotion Music Player</p>
                     </div>
 
@@ -787,7 +787,7 @@ const Home = ({ activeTab = "Home" }) => {
 
                         {/* User profile */}
                         <div className="header__profile" onClick={() => handleNavClick("Settings")}>
-                            <span className="header__profile-name">{user?.fullName || user?.username || 'BESTHA MAHESH BABU'}</span>
+                            <span className="header__profile-name">{user?.fullName || user?.username || 'AMMAR'}</span>
                         </div>
                     </div>
                 </header>
