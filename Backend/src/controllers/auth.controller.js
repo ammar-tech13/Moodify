@@ -39,7 +39,12 @@ async function registerUser(req, res) {
         }
     )
 
-    res.cookie("token", token)
+    res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 3 * 24 * 60 * 60 * 1000
+});
 
     return res.status(201).json({
         message: "User registered successfully",
@@ -88,7 +93,12 @@ async function loginUser(req, res) {
         }
     )
 
-    res.cookie("token", token)
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 3 * 24 * 60 * 60 * 1000
+})
 
     return res.status(200).json({
         message: "User logged in successfully",
@@ -113,7 +123,11 @@ async function logoutUser(req, res) {
 
     const token = req.cookies.token
 
-    res.clearCookie("token")
+    res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
 
     await redis.set(token, Date.now().toString(), "EX", 60 * 60)
 
