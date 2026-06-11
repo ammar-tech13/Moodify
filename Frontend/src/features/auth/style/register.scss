@@ -1,0 +1,49 @@
+@import "./login.scss";
+
+/* ── Register Specific Styles ── */
+
+.register-page {
+    @extend .login-page;
+}
+
+.register-card {
+    @extend .login-card;
+    max-width: 440px; 
+}
+
+.register-form {
+    @extend .login-form;
+}
+
+/* Password Strength Indicator */
+.strength-meter-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    padding: 0 2px;
+}
+
+.strength-bar-container {
+    display: flex;
+    gap: 5px;
+    flex: 1;
+}
+
+.strength-bar {
+    height: 4px;
+    flex: 1;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    transition: background-color 0.25s ease;
+}
+
+.strength-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 48px;
+    text-align: right;
+}
