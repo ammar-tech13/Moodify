@@ -10,7 +10,8 @@ app.use(cookieParser());
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://moodify-gamma-orpin.vercel.app"
+        "https://moodify-gamma-orpin.vercel.app",
+        "https://ammar-moodify.vercel.app"
     ],
     credentials: true
 }));
