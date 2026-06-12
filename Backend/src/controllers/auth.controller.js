@@ -136,5 +136,54 @@ async function logoutUser(req, res) {
     })
 }
 
+async function googleLogin(req, res) {
+    const { email, displayName } = req.body;
 
-module.exports = { registerUser, loginUser, getMe, logoutUser }
+    if (!email) {
+        return res.status(400).json({ message: "Email is required" });
+    }
+
+    let user = await userModel.findOne({ email });
+
+    if (!user) {
+        const username = displayName || email.split("@")[0];
+
+        const hash = await bcrypt.hash(email + process.env.JWT_SECRET, 10);
+
+        user = await userModel.create({
+            username: username + Date.now(),
+            email,
+            password: hash
+        });
+    }
+
+    const token = jwt.sign(
+        {
+            id: user._id,
+            username: user.username
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: "3d"
+        }
+    );
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 3 * 24 * 60 * 60 * 1000
+    });
+
+    return res.status(200).json({
+        message: "Google login successful",
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    });
+}
+
+
+module.exports = { registerUser, loginUser, googleLogin, getMe, logoutUser }
